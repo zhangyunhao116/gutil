@@ -67,3 +67,17 @@ func TestSliceIntersection(t *testing.T) {
 	assertTrue([]int{1, 2}, []int{1, 2, 3}, []int{1, 2})
 	assertTrue([]int{1, 2, 2, 3, 4}, []int{1, 1, 2, 3}, []int{1, 2, 3})
 }
+
+func TestSliceRemoveDuplicates(t *testing.T) {
+	assertTrue := func(a, res []int) {
+		c := SliceRemoveDuplicates(a)
+		if !SliceEqualLoosely(c, res) {
+			t.Fatal(a, "expected:", res, "got:", c)
+		}
+	}
+	assertTrue([]int{}, []int{})
+	assertTrue([]int{1, 2, 3}, []int{1, 2, 3})
+	assertTrue([]int{1, 1, 2, 3}, []int{1, 2, 3})
+	assertTrue([]int{1, 1, 1}, []int{1})
+	assertTrue([]int{1, 1, 1, 3}, []int{1, 3})
+}

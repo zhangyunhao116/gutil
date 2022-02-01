@@ -1,5 +1,15 @@
 package gutil
 
+func SliceRemoveDuplicates[T comparable](s []T) []T {
+	var res []T
+	for _, v := range s {
+		if !SliceContains(res, v) {
+			res = append(res, v)
+		}
+	}
+	return res
+}
+
 func SliceUnion[T comparable](a, b []T) (res []T) {
 	for _, v := range a {
 		if !SliceContains(res, v) {
